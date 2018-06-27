@@ -1,0 +1,10 @@
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe.config
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.pdb
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csprojResolveAssemblyReference.cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.Properties.Resources.resources
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.GenerateResource.Cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\TestPanelClose.SpicyApp.resources
