@@ -1,0 +1,30 @@
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe.config
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe
+C:\Users\student\source\repos\SpicyApp\SpicyApp\bin\Debug\SpicyApp.pdb
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csprojResolveAssemblyReference.cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.Properties.Resources.resources
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.GenerateResource.Cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb
+C:\Users\student\source\repos\SpicyApp\SpicyApp\obj\Debug\TestPanelClose.SpicyApp.resources
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe.config
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.pdb
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csprojResolveAssemblyReference.cache
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\TestPanelClose.SpicyApp.resources
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.Properties.Resources.resources
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.GenerateResource.Cache
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
+G:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe.config
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\bin\Debug\SpicyApp.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csprojResolveAssemblyReference.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\TestPanelClose.SpicyApp.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.Properties.Resources.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.GenerateResource.Cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb

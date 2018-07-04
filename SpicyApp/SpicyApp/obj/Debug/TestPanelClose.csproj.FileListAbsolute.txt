@@ -1,0 +1,20 @@
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.exe.config
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.exe
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.pdb
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csprojResolveAssemblyReference.cache
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.Form1.resources
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.Properties.Resources.resources
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csproj.GenerateResource.Cache
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csproj.CoreCompileInputs.cache
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.exe
+C:\Users\student\source\repos\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.exe.config
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\bin\Debug\TestPanelClose.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csprojResolveAssemblyReference.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.Form1.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.Properties.Resources.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csproj.GenerateResource.Cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.csproj.CoreCompileInputs.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\TestPanelClose\TestPanelClose\obj\Debug\TestPanelClose.pdb
