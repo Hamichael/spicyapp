@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ingData.cs" />
     <Compile Include="SpicyAppMain.cs">
       <SubType>Form</SubType>
     </Compile>

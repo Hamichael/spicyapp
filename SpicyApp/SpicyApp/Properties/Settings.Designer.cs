@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestPanelClose.Properties
+namespace SpicyAppSpace.Properties
 {
 
 

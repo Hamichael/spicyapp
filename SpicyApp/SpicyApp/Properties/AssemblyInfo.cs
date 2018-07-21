@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TestPanelClose")]
+[assembly: AssemblyTitle("SpicyAppSpace")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Broward College")]
-[assembly: AssemblyProduct("TestPanelClose")]
+[assembly: AssemblyProduct("SpicyAppSpace")]
 [assembly: AssemblyCopyright("Copyright © Broward College 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
