@@ -31,7 +31,7 @@ using System.Windows.Forms;
  * Implement class ingData to mirror data
  * TODO [Dev 3]: Add and Update data in batchs
  * 
- * ------------------------* ---------- *
+ * ------------------------*------------*
  * Development Version 2.1 * 07/31/2018 *
  * 
  * Method getObjectRef() implemented. Implements references to reuse code with different objects.
@@ -205,9 +205,9 @@ namespace SpicyAppSpace
         {
             //Getting References
             TextBox refTXTIngName = null;
-            UpDownBase refUPDIngQuantity = null;
+            NumericUpDown refUPDIngQuantity = null;
             ComboBox refCBOIngUnit = null;
-            UpDownBase refUPDIngSpicy = null;
+            NumericUpDown refUPDIngSpicy = null;
             Button refButton = null;
             getObjectRef(sender, ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy, ref refButton);
 
@@ -265,10 +265,7 @@ namespace SpicyAppSpace
             RefreshIngList();
 
             //Clear text, disable add button
-            refTXTIngName.Text = String.Empty;
-            refUPDIngQuantity.Text = "0";
-            refCBOIngUnit.Text = String.Empty;
-            refUPDIngSpicy.Text = "0.0";
+            clearData(ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy);
             refButton.Enabled = false;
         }
 
@@ -405,12 +402,12 @@ namespace SpicyAppSpace
         }
 
         //btnIngAdd_Click version
-        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref UpDownBase refIngUPDQuantity, ref ComboBox refCBOIngUnit, ref UpDownBase refUPDIngSpicy, ref Button refButton)
+        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy, ref Button refButton)
         {
             if (Object.ReferenceEquals(sender, btnConfirmE0))
             {
                 refTXTIngName = txtIngNameE0;
-                refIngUPDQuantity = updIngQuantityE0;
+                refUPDIngQuantity = updIngQuantityE0;
                 refCBOIngUnit = cboIngQuantityUnitsE0;
                 refUPDIngSpicy = updIngSpicyE0;
                 refButton = btnConfirmE0;
@@ -418,7 +415,7 @@ namespace SpicyAppSpace
             else if (Object.ReferenceEquals(sender, btnIngAdd01))
             {
                 refTXTIngName = txtIngName01;
-                refIngUPDQuantity = updIngQuantity01;
+                refUPDIngQuantity = updIngQuantity01;
                 refCBOIngUnit = cboIngQuantityUnits01;
                 refUPDIngSpicy = updIngSpicy01;
                 refButton = btnIngAdd01;
@@ -426,7 +423,7 @@ namespace SpicyAppSpace
             else if (Object.ReferenceEquals(sender, btnIngAdd02))
             {
                 refTXTIngName = txtIngName02;
-                refIngUPDQuantity = updIngQuantity02;
+                refUPDIngQuantity = updIngQuantity02;
                 refCBOIngUnit = cboIngQuantityUnits02;
                 refUPDIngSpicy = updIngSpicy02;
                 refButton = btnIngAdd02;
@@ -434,7 +431,7 @@ namespace SpicyAppSpace
             else if (Object.ReferenceEquals(sender, btnIngAdd03))
             {
                 refTXTIngName = txtIngName03;
-                refIngUPDQuantity = updIngQuantity03;
+                refUPDIngQuantity = updIngQuantity03;
                 refCBOIngUnit = cboIngQuantityUnits03;
                 refUPDIngSpicy = updIngSpicy03;
                 refButton = btnIngAdd03;
@@ -481,8 +478,31 @@ namespace SpicyAppSpace
         }
         //End getObjectRef() methods.
 
+        //Method to clear data to defaults
+        private void clearData(ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy)
+        {
+            refTXTIngName.Text = String.Empty;
+            refUPDIngQuantity.Text = "0";
+            refCBOIngUnit.Text = String.Empty;
+            refUPDIngSpicy.Text = "0.0";
+        }
+        private void clearData(ref ComboBox refCBOIngName, ref Label refLBLIngQuantity, ref Label refLBLIngUnit, ref Label refLBLIngSpicy)
+        {
+            refCBOIngName.Text = String.Empty;
+            refLBLIngQuantity.Text = "0";
+            refLBLIngUnit.Text = String.Empty;
+            refLBLIngSpicy.Text = "0.0";
+        }
+        //Clear data end
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (cboIngListE0.Text == String.Empty)
+            {
+                MessageBox.Show("Please select an item to edit.\n");
+                return;
+            }
+
             if (btnConfirmE0.Enabled == false)
             {
                 //Enabled edit line
@@ -511,21 +531,24 @@ namespace SpicyAppSpace
                     cboIngQuantityUnitsE0.Text = tempIngData.Unit;
                     updIngSpicyE0.Text = (tempIngData.Spicyness).ToString();
                 }
-
             }
             else if (btnConfirmE0.Enabled == true)
             {
                 //Disable edit line
                 txtIngNameE0.Enabled = false;
                 updIngQuantityE0.Enabled = false;
-                cboIngListE0.Enabled = false;
+                cboIngQuantityUnitsE0.Enabled = false;
                 updIngSpicyE0.Enabled = false;
                 btnConfirmE0.Enabled = false;
                 //Enable combo box
                 cboIngListE0.Enabled = true;
                 //Change button name
                 btnEditE0.Text = "Edit";
+
+                //Clear display
+                clearData(ref txtIngNameE0, ref updIngQuantityE0, ref cboIngQuantityUnitsE0, ref updIngSpicyE0);
             }
+            return;
         }
 
         
@@ -565,6 +588,7 @@ namespace SpicyAppSpace
             ingData tempIngData = getListItem(index);
 
             //Grabs item data to write
+            //TODO: Update display automatically
             if (index != -1)
             {
                 //Write
@@ -572,9 +596,20 @@ namespace SpicyAppSpace
                 tempIngData.Quantity = Convert.ToInt32(updIngQuantityE0.Text);
                 tempIngData.Unit = cboIngQuantityUnitsE0.Text;
                 tempIngData.Spicyness = float.Parse(updIngSpicyE0.Text);
+
+                //Display
+                txtIngNameE0.Text = txtIngNameE0.Text;
+                lblIngQuantityE0.Text = updIngQuantityE0.Text;
+                lblIngQuantityUnitsE0.Text = cboIngQuantityUnitsE0.Text;
+                lblSpicyE0.Text = updIngSpicyE0.Text;
+
+                //Change Button Name
+                btnEditE0.Text = "Done";
             }
 
             //Write to file in line
+
+
         }
     }
 }

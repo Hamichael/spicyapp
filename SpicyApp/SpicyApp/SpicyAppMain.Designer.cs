@@ -881,6 +881,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 439);
+            this.Controls.Add(this.pnlIntro);
             this.Controls.Add(this.pnlIng);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pnlCrd);
@@ -889,7 +890,6 @@
             this.Controls.Add(this.btnRecPanel);
             this.Controls.Add(this.btnIngPanel);
             this.Controls.Add(this.btnIntPanelShow);
-            this.Controls.Add(this.pnlIntro);
             this.Name = "SpicyApp";
             this.Text = "SpicyApp";
             this.pnlIntro.ResumeLayout(false);
