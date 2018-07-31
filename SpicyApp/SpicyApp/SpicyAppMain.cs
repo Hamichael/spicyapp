@@ -31,6 +31,14 @@ using System.Windows.Forms;
  * Implement class ingData to mirror data
  * TODO [Dev 3]: Add and Update data in batchs
  * 
+ * ------------------------*------------*
+ * Development Version 2.1 * 07/31/2018 *
+ * 
+ * Method getObjectRef() implemented. Implements references to reuse code with different objects.
+ * Added extra display and adding ingredient lines
+ * Add edit line [WIP]
+ * Updated references in code
+ * Updated ingData to include spicyness [float]
  * ===================== *
  * 
  */
@@ -149,42 +157,85 @@ namespace SpicyAppSpace
         //Validating Ingredient name
         private void txtIngName_Validating(object sender, CancelEventArgs e)
         {
+            //Getting References
+            TextBox refTXTIngName = null;
+            Button refButton = null;
+            getObjectRef(sender, ref refTXTIngName, ref refButton);
+
             string regexTextOnly = @"^[^\d\s]+$";
-            bool isValidText = Regex.IsMatch(txtIngName.Text, regexTextOnly);
+            bool isValidText = Regex.IsMatch(refTXTIngName.Text, regexTextOnly);
             //Empty Validation
-            if (txtIngName.Text == String.Empty)
+            if (refTXTIngName.Text == String.Empty)
             {
-                btnIngAdd.Enabled = false;
+                refButton.Enabled = false;
                 return;
             }
             //Regex Validation
             if (!isValidText)
             {
                 MessageBox.Show("Ingredient name has to be valid.");
-                txtIngName.Focus();
-                txtIngName.SelectAll();
-                btnIngAdd.Enabled = false;
+                refTXTIngName.Focus();
+                refTXTIngName.SelectAll();
+                refButton.Enabled = false;
                 return;
             }
+            //Editing check
+            if (isEditLine(sender) == false)
+            {
+                //Check if name already exists in the database
+                for (int i = 0; i < myIngDataList.Count; i++)
+                {
+                    ingData readIngData = getListItem(i);
+                    if (readIngData.Name == refTXTIngName.Text)
+                    {
+                        MessageBox.Show("Name already exist.");
+                        refTXTIngName.Focus();
+                        refTXTIngName.SelectAll();
+                        refButton.Enabled = false;
+                        return;
+                    }
+                }
+            }
             //If Validation passes
-            btnIngAdd.Enabled = true;
+            refButton.Enabled = true;
         }
 
         //Button in IngPanel that adds the ingredient to data
         private void btnIngAdd_Click(object sender, EventArgs e)
         {
+            //Getting References
+            TextBox refTXTIngName = null;
+            NumericUpDown refUPDIngQuantity = null;
+            ComboBox refCBOIngUnit = null;
+            NumericUpDown refUPDIngSpicy = null;
+            Button refButton = null;
+            getObjectRef(sender, ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy, ref refButton);
+
             string regexTextOnly = @"^[^\d\s]+$";//Text only, no numbers or spaces
-            bool isValidText = Regex.IsMatch(txtIngName.Text, regexTextOnly);
+            bool isValidText = Regex.IsMatch(refTXTIngName.Text, regexTextOnly);
             //Regex backup check
-            if (txtIngName.Text == String.Empty || !isValidText)
+            if (refTXTIngName.Text == String.Empty || !isValidText)
             {
                 return;
             }
             //Units check
-            if (cboIngQuantityUnits.Text == String.Empty)
+            if (refCBOIngUnit.Text == String.Empty)
             {
                 MessageBox.Show("Must have a Unit.");
                 return;
+            }
+            //Editing backup check
+            if (isEditLine(sender) == false)
+            {
+                //Check if name already exists in the database
+                for (int i = 0; i < myIngDataList.Count; i++)
+                {
+                    ingData readIngData = getListItem(i);
+                    if (readIngData.Name == refTXTIngName.Text)
+                    {
+                        return;
+                    }
+                }
             }
 
 
@@ -196,14 +247,14 @@ namespace SpicyAppSpace
             StreamWriter binWriter = new StreamWriter(outFile);
 
             //Temp ingData and Store user data entered
-            ingData tempIngData = new ingData(txtIngName.Text, Convert.ToInt32(updIngQuantity.Text), cboIngQuantityUnits.Text);
-
-            //Write data to the file
-            binWriter.WriteLine(tempIngData.Name + "," + tempIngData.Quantity + "," + tempIngData.Unit);
+            ingData tempIngData = new ingData(refTXTIngName.Text, Convert.ToInt32(refUPDIngQuantity.Text), refCBOIngUnit.Text, float.Parse(refUPDIngSpicy.Text));
 
             //Add tempIngData to myIngDataList.
             //Note: The following piece of code fixes issues in displaying correct data via Combo Box
             myIngDataList.Add(tempIngData);
+
+            //Write data to the file
+            binWriter.WriteLine(tempIngData.Name + "," + tempIngData.Quantity + "," + tempIngData.Unit + "," + tempIngData.Spicyness);
 
             //Close
             binWriter.Close();
@@ -214,10 +265,8 @@ namespace SpicyAppSpace
             RefreshIngList();
 
             //Clear text, disable add button
-            txtIngName.Text = String.Empty;
-            updIngQuantity.Text = String.Empty;
-            cboIngQuantityUnits.Text = String.Empty;
-            btnIngAdd.Enabled = false;
+            clearData(ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy);
+            refButton.Enabled = false;
         }
 
         //Refreshes the combo box list on click
@@ -230,7 +279,10 @@ namespace SpicyAppSpace
         private void RefreshIngList()
         {
             //Clear combo list
-            cboIngList.Items.Clear();
+            cboIngList00.Items.Clear();
+            cboIngList01.Items.Clear();
+            cboIngList02.Items.Clear();
+            cboIngListE0.Items.Clear();
 
             //Temp ingData
             ingData tempIngData = new ingData();
@@ -249,7 +301,7 @@ namespace SpicyAppSpace
                 //Read in a line from the file and priming read
                 line = myReader.ReadLine();
 
-                string[] fields = new string[3];
+                string[] fields = new string[4];
                 char[] sep = new char[1];
 
                 sep[0] = ',';
@@ -264,12 +316,16 @@ namespace SpicyAppSpace
                     tempIngData.Name = fields[0];
                     tempIngData.Quantity = Convert.ToInt32(fields[1]);
                     tempIngData.Unit = fields[2];
+                    tempIngData.Spicyness = float.Parse(fields[3]);
 
                     //Add tempIngData to myIngDataList
                     myIngDataList.Add(tempIngData);
 
                     //Add name to combo box
-                    cboIngList.Items.Add(tempIngData.Name);
+                    cboIngList00.Items.Add(tempIngData.Name);
+                    cboIngList01.Items.Add(tempIngData.Name);
+                    cboIngList02.Items.Add(tempIngData.Name);
+                    cboIngListE0.Items.Add(tempIngData.Name);
 
                     //Read in next line
                     line = myReader.ReadLine();
@@ -288,23 +344,272 @@ namespace SpicyAppSpace
         //Runs after selecting an item
         private void cboIngList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Getting References
+            ComboBox refCBOIngName = null;
+            Label refLBLIngQuantity = null;
+            Label refLBLIngUnit = null;
+            Label refLBLIngSpicy = null;
+            Button refButton = null;
+            getObjectRef(sender, ref refCBOIngName, ref refLBLIngQuantity, ref refLBLIngUnit, ref refLBLIngSpicy, ref refButton);
+
             //Grabs index of item
-            int index = cboIngList.SelectedIndex;
-            
+            int index = refCBOIngName.SelectedIndex;
+
             //Grabs item data to display
-            /**TODO: Turn this part into a method*/
             if (index != -1)
             {
-                //Temp ingData
-                ingData tempIngData = new ingData();
-
-                //Grab the corresponding data
-                tempIngData = myIngDataList.Skip(index).Take(1).First();
+                //Temp ingData, gets item from index location
+                ingData tempIngData = getListItem(index);
 
                 //Display
-                lblIngQuantity.Text = (tempIngData.Quantity).ToString();
-                lblIngQuantityUnits.Text = tempIngData.Unit;
+                refLBLIngQuantity.Text = (tempIngData.Quantity).ToString();
+                refLBLIngUnit.Text = tempIngData.Unit;
+                refLBLIngSpicy.Text = (tempIngData.Spicyness).ToString();
             }
+        }
+
+        //Takes the integer inputed, and retrieves the item at the index number
+        private ingData getListItem(int index)
+        {
+            return myIngDataList.Skip(index).Take(1).First();
+        }
+
+        //Takes an object, and retrieves the relevent reference. getObjectRef() methods.
+        //txtIngName_Validating version
+        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref Button refButton)
+        {
+            if (Object.ReferenceEquals(sender, txtIngNameE0))
+            {
+                refTXTIngName = txtIngNameE0;
+                refButton = btnConfirmE0;
+            }
+            else if (Object.ReferenceEquals(sender, txtIngName01))
+            {
+                refTXTIngName = txtIngName01;
+                refButton = btnIngAdd01;
+            }
+            else if(Object.ReferenceEquals(sender, txtIngName02))
+            {
+                refTXTIngName = txtIngName02;
+                refButton = btnIngAdd02;
+            }
+            else if(Object.ReferenceEquals(sender, txtIngName03))
+            {
+                refTXTIngName = txtIngName03;
+                refButton = btnIngAdd03;
+            }
+            return;
+        }
+
+        //btnIngAdd_Click version
+        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy, ref Button refButton)
+        {
+            if (Object.ReferenceEquals(sender, btnConfirmE0))
+            {
+                refTXTIngName = txtIngNameE0;
+                refUPDIngQuantity = updIngQuantityE0;
+                refCBOIngUnit = cboIngQuantityUnitsE0;
+                refUPDIngSpicy = updIngSpicyE0;
+                refButton = btnConfirmE0;
+            }
+            else if (Object.ReferenceEquals(sender, btnIngAdd01))
+            {
+                refTXTIngName = txtIngName01;
+                refUPDIngQuantity = updIngQuantity01;
+                refCBOIngUnit = cboIngQuantityUnits01;
+                refUPDIngSpicy = updIngSpicy01;
+                refButton = btnIngAdd01;
+            }
+            else if (Object.ReferenceEquals(sender, btnIngAdd02))
+            {
+                refTXTIngName = txtIngName02;
+                refUPDIngQuantity = updIngQuantity02;
+                refCBOIngUnit = cboIngQuantityUnits02;
+                refUPDIngSpicy = updIngSpicy02;
+                refButton = btnIngAdd02;
+            }
+            else if (Object.ReferenceEquals(sender, btnIngAdd03))
+            {
+                refTXTIngName = txtIngName03;
+                refUPDIngQuantity = updIngQuantity03;
+                refCBOIngUnit = cboIngQuantityUnits03;
+                refUPDIngSpicy = updIngSpicy03;
+                refButton = btnIngAdd03;
+            }
+            return;
+        }
+
+        //cboIngList_SelectedIndexChanged version
+        private void getObjectRef(object sender, ref ComboBox refCBOIngName, ref Label refLBLIngQuantity, ref Label refLBLIngUnit, ref Label refLBLIngSpicy, ref Button refButton)
+        {
+            if (Object.ReferenceEquals(sender, cboIngList00))
+            {
+                refCBOIngName = cboIngList00;
+                refLBLIngQuantity = lblIngQuantity00;
+                refLBLIngUnit = lblIngQuantityUnits00;
+                refLBLIngSpicy = lblSpicy00;
+                refButton = btnView00;
+            }
+            else if (Object.ReferenceEquals(sender, cboIngList01))
+            {
+                refCBOIngName = cboIngList01;
+                refLBLIngQuantity = lblIngQuantity01;
+                refLBLIngUnit = lblIngQuantityUnits01;
+                refLBLIngSpicy = lblSpicy01;
+                refButton = btnView01;
+            }
+            else if (Object.ReferenceEquals(sender, cboIngList02))
+            {
+                refCBOIngName = cboIngList02;
+                refLBLIngQuantity = lblIngQuantity02;
+                refLBLIngUnit = lblIngQuantityUnits02;
+                refLBLIngSpicy = lblSpicy02;
+                refButton = btnView02;
+            }
+            else if (Object.ReferenceEquals(sender, cboIngListE0))
+            {
+                refCBOIngName = cboIngListE0;
+                refLBLIngQuantity = lblIngQuantityE0;
+                refLBLIngUnit = lblIngQuantityUnitsE0;
+                refLBLIngSpicy = lblSpicyE0;
+                refButton = btnEditE0;
+            }
+            return;
+        }
+        //End getObjectRef() methods.
+
+        //Method to clear data to defaults
+        private void clearData(ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy)
+        {
+            refTXTIngName.Text = String.Empty;
+            refUPDIngQuantity.Text = "0";
+            refCBOIngUnit.Text = String.Empty;
+            refUPDIngSpicy.Text = "0.0";
+        }
+        private void clearData(ref ComboBox refCBOIngName, ref Label refLBLIngQuantity, ref Label refLBLIngUnit, ref Label refLBLIngSpicy)
+        {
+            refCBOIngName.Text = String.Empty;
+            refLBLIngQuantity.Text = "0";
+            refLBLIngUnit.Text = String.Empty;
+            refLBLIngSpicy.Text = "0.0";
+        }
+        //Clear data end
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (cboIngListE0.Text == String.Empty)
+            {
+                MessageBox.Show("Please select an item to edit.\n");
+                return;
+            }
+
+            if (btnConfirmE0.Enabled == false)
+            {
+                //Enabled edit line
+                txtIngNameE0.Enabled = true;
+                updIngQuantityE0.Enabled = true;
+                cboIngQuantityUnitsE0.Enabled = true;
+                updIngSpicyE0.Enabled = true;
+                btnConfirmE0.Enabled = true;
+                //Disable combo box
+                cboIngListE0.Enabled = false;
+                //Change button name
+                btnEditE0.Text = "Cancel";
+
+                //Get index to transfer data to edit line
+                int index = cboIngListE0.SelectedIndex;
+
+                //Grabs item data to display
+                if (index != -1)
+                {
+                    //Temp ingData, gets item from index location
+                    ingData tempIngData = getListItem(index);
+
+                    //Display
+                    txtIngNameE0.Text = tempIngData.Name;
+                    updIngQuantityE0.Text = (tempIngData.Quantity).ToString();
+                    cboIngQuantityUnitsE0.Text = tempIngData.Unit;
+                    updIngSpicyE0.Text = (tempIngData.Spicyness).ToString();
+                }
+            }
+            else if (btnConfirmE0.Enabled == true)
+            {
+                //Disable edit line
+                txtIngNameE0.Enabled = false;
+                updIngQuantityE0.Enabled = false;
+                cboIngQuantityUnitsE0.Enabled = false;
+                updIngSpicyE0.Enabled = false;
+                btnConfirmE0.Enabled = false;
+                //Enable combo box
+                cboIngListE0.Enabled = true;
+                //Change button name
+                btnEditE0.Text = "Edit";
+
+                //Clear display
+                clearData(ref txtIngNameE0, ref updIngQuantityE0, ref cboIngQuantityUnitsE0, ref updIngSpicyE0);
+            }
+            return;
+        }
+
+        
+
+        //Checks if the object is a edit line
+        private bool isEditLine(object sender)
+        {
+            if (Object.ReferenceEquals(sender, txtIngNameE0))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //TODO: Finish
+        private void btnConfirmE0_Click(object sender, EventArgs e)
+        {
+            string regexTextOnly = @"^[^\d\s]+$";//Text only, no numbers or spaces
+            bool isValidText = Regex.IsMatch(txtIngNameE0.Text, regexTextOnly);
+            //Regex backup check
+            if (txtIngNameE0.Text == String.Empty || !isValidText)
+            {
+                return;
+            }
+            //Units check
+            if (txtIngNameE0.Text == String.Empty)
+            {
+                MessageBox.Show("Must have a Unit.");
+                return;
+            }
+
+
+            //Get index
+            int index = cboIngListE0.SelectedIndex;
+
+            //Temp ingData, gets item from index location
+            ingData tempIngData = getListItem(index);
+
+            //Grabs item data to write
+            //TODO: Update display automatically
+            if (index != -1)
+            {
+                //Write
+                tempIngData.Name = txtIngNameE0.Text;
+                tempIngData.Quantity = Convert.ToInt32(updIngQuantityE0.Text);
+                tempIngData.Unit = cboIngQuantityUnitsE0.Text;
+                tempIngData.Spicyness = float.Parse(updIngSpicyE0.Text);
+
+                //Display
+                txtIngNameE0.Text = txtIngNameE0.Text;
+                lblIngQuantityE0.Text = updIngQuantityE0.Text;
+                lblIngQuantityUnitsE0.Text = cboIngQuantityUnitsE0.Text;
+                lblSpicyE0.Text = updIngSpicyE0.Text;
+
+                //Change Button Name
+                btnEditE0.Text = "Done";
+            }
+
+            //Write to file in line
+
+
         }
     }
 }
