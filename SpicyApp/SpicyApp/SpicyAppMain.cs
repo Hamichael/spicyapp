@@ -540,18 +540,34 @@ namespace SpicyAppSpace
             return false;
         }
 
+        //TODO: Finish
         private void btnConfirmE0_Click(object sender, EventArgs e)
         {
-            //Get index to transfer data to edit line
+            string regexTextOnly = @"^[^\d\s]+$";//Text only, no numbers or spaces
+            bool isValidText = Regex.IsMatch(txtIngNameE0.Text, regexTextOnly);
+            //Regex backup check
+            if (txtIngNameE0.Text == String.Empty || !isValidText)
+            {
+                return;
+            }
+            //Units check
+            if (txtIngNameE0.Text == String.Empty)
+            {
+                MessageBox.Show("Must have a Unit.");
+                return;
+            }
+
+
+            //Get index
             int index = cboIngListE0.SelectedIndex;
 
             //Temp ingData, gets item from index location
             ingData tempIngData = getListItem(index);
 
-            //Grabs item data to display
+            //Grabs item data to write
             if (index != -1)
             {
-                //Display
+                //Write
                 tempIngData.Name = txtIngNameE0.Text;
                 tempIngData.Quantity = Convert.ToInt32(updIngQuantityE0.Text);
                 tempIngData.Unit = cboIngQuantityUnitsE0.Text;
