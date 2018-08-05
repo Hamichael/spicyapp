@@ -28,16 +28,24 @@ Planned features will be batch processing of ingredient adding and updating.
 Development Version 2.1 - 07/31/2018
 
 Method getObjectRef() implemented. Implements references to reuse code with different objects.
+
 Added extra display and adding ingredient lines
+
 Add edit line [WIP]
+
 Updated references in code
+
 Updated ingData to include spicyness [float]
 
 ----------------------------------
 Development Version 3 - 08/04/2018
 ----------------------------------
 Updated ingData to include file [string]
+
 writeDatabaseIngData(string fileDatabase) implemented
+
 Title String for Messagebox validation added
+
 Seperated database from interior data. Now all ingredient data updates in one batch.
+
 Added file references to images
