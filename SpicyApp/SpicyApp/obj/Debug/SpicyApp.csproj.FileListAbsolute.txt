@@ -78,3 +78,12 @@ C:\Users\student\Desktop\spicyapp-feature-extended-ingredient-panel\SpicyApp\Spi
 C:\Users\student\Desktop\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
 C:\Users\student\Desktop\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
 C:\Users\student\Desktop\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\bin\Debug\SpicyApp.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\bin\Debug\SpicyApp.pdb
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csprojResolveAssemblyReference.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyAppSpace.SpicyApp.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.Properties.Resources.resources
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.GenerateResource.Cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.csproj.CoreCompileInputs.cache
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.exe
+M:\A-College Doc\Broward College\3-Winter 2018\CSharp\spicyapp-feature-extended-ingredient-panel\SpicyApp\SpicyApp\obj\Debug\SpicyApp.pdb

@@ -40,28 +40,36 @@ using System.Windows.Forms;
  * Updated references in code
  * Updated ingData to include spicyness [float]
  * ===================== *
+ * Development Version 3 *
  * 
+ * Updated ingData to include file [string]
+ * writeDatabaseIngData(string fileDatabase) implemented
+ * Title String for Messagebox validation added
+ * Seperated database from interior data. Now all ingredient data updates in one batch.
+ * Added file references to images
  */
 
 namespace SpicyAppSpace
 {
     public partial class SpicyApp : Form
     {
-        //Declare instance of a list for adding ing data
+        //Declare instance of a list for adding Ing data
         ingData myIngData = new ingData();
 
         //Create a list of ingData
         List<ingData> myIngDataList = new List<ingData>();
+
+        const string validationTitle = "Validation";
 
         public SpicyApp()
         {
             InitializeComponent();
 
             //Panel Text
-            const String INTRO_PANEL_TEXT = "Introduction";
-            const String INGREDIENTS_PANEL_TEXT = "&Ingredients";
-            const String RECIPE_PANEL_TEXT = "&Recipe";
-            const String CREDITS_PANEL_TEXT = "&Credits";
+            const string INTRO_PANEL_TEXT = "Introduction";
+            const string INGREDIENTS_PANEL_TEXT = "&Ingredients";
+            const string RECIPE_PANEL_TEXT = "&Recipe";
+            const string CREDITS_PANEL_TEXT = "&Credits";
 
             /*Size of non-Intro Panels [Add or remove the "/" after the "*"]*
             const int PANEL_WIDTH = 100;
@@ -85,8 +93,10 @@ namespace SpicyAppSpace
 
             //Run as default active panel
             RecPanelMethod();
-            //Run Refreshing List to populate ingredient list
-            RefreshIngList();
+            //Run initializingIngList to populate ingredient list
+            initializingIngList();
+            //Populate files in comboBox
+            getDirectoryFiles();
         }
 
         private void btn_introPanelClose_Click(object sender, EventArgs e)
@@ -116,7 +126,15 @@ namespace SpicyAppSpace
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close(); /**TODO: Placeholder for MessageBox*/
+            DialogResult dialogResult = MessageBox.Show("Do you wish to close this application?", "Exit", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Close();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
         }
 
         //Panel Control methods
@@ -173,7 +191,7 @@ namespace SpicyAppSpace
             //Regex Validation
             if (!isValidText)
             {
-                MessageBox.Show("Ingredient name has to be valid.");
+                MessageBox.Show("Ingredient name has to be valid.", validationTitle);
                 refTXTIngName.Focus();
                 refTXTIngName.SelectAll();
                 refButton.Enabled = false;
@@ -188,7 +206,7 @@ namespace SpicyAppSpace
                     ingData readIngData = getListItem(i);
                     if (readIngData.Name == refTXTIngName.Text)
                     {
-                        MessageBox.Show("Name already exist.");
+                        MessageBox.Show("Name already exist.", validationTitle);
                         refTXTIngName.Focus();
                         refTXTIngName.SelectAll();
                         refButton.Enabled = false;
@@ -209,7 +227,8 @@ namespace SpicyAppSpace
             ComboBox refCBOIngUnit = null;
             NumericUpDown refUPDIngSpicy = null;
             Button refButton = null;
-            getObjectRef(sender, ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy, ref refButton);
+            ComboBox refCBOFile = null;
+            getObjectRef(sender, ref refTXTIngName, ref refUPDIngQuantity, ref refCBOIngUnit, ref refUPDIngSpicy, ref refButton, ref refCBOFile);
 
             string regexTextOnly = @"^[^\d\s]+$";//Text only, no numbers or spaces
             bool isValidText = Regex.IsMatch(refTXTIngName.Text, regexTextOnly);
@@ -221,7 +240,7 @@ namespace SpicyAppSpace
             //Units check
             if (refCBOIngUnit.Text == String.Empty)
             {
-                MessageBox.Show("Must have a Unit.");
+                MessageBox.Show("Must have a Unit.", validationTitle);
                 return;
             }
             //Editing backup check
@@ -238,27 +257,26 @@ namespace SpicyAppSpace
                 }
             }
 
-
             //Reading out data to SpicyAppIngredients.txt
 
             //Text-file for appending ingredient data
             /**TODO: Replace file with Database at some point*/
-            FileStream outFile = new FileStream("SpicyAppIngredients.txt", FileMode.Append);
-            StreamWriter binWriter = new StreamWriter(outFile);
+            //FileStream outFile = new FileStream("SpicyAppIngredients.txt", FileMode.Append);
+            //StreamWriter binWriter = new StreamWriter(outFile);
 
             //Temp ingData and Store user data entered
-            ingData tempIngData = new ingData(refTXTIngName.Text, Convert.ToInt32(refUPDIngQuantity.Text), refCBOIngUnit.Text, float.Parse(refUPDIngSpicy.Text));
+            ingData tempIngData = new ingData(refTXTIngName.Text, Convert.ToInt32(refUPDIngQuantity.Text), refCBOIngUnit.Text, float.Parse(refUPDIngSpicy.Text), refCBOFile.Text);
 
             //Add tempIngData to myIngDataList.
             //Note: The following piece of code fixes issues in displaying correct data via Combo Box
             myIngDataList.Add(tempIngData);
 
             //Write data to the file
-            binWriter.WriteLine(tempIngData.Name + "," + tempIngData.Quantity + "," + tempIngData.Unit + "," + tempIngData.Spicyness);
+            //binWriter.WriteLine(tempIngData.Name + "," + tempIngData.Quantity + "," + tempIngData.Unit + "," + tempIngData.Spicyness);
 
             //Close
-            binWriter.Close();
-            outFile.Close();
+            //binWriter.Close();
+            //outFile.Close();
 
             //Refresh list after adding items.
             //Note: Make sure to put this method after close
@@ -273,10 +291,38 @@ namespace SpicyAppSpace
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshIngList();
+            getDirectoryFiles();
         }
 
         //Method to Refresh combo list
         private void RefreshIngList()
+        {
+            //Clear combo list
+            cboIngList00.Items.Clear();
+            cboIngList01.Items.Clear();
+            cboIngList02.Items.Clear();
+            cboIngListE0.Items.Clear();
+
+            //Temp ingData
+            ingData tempIngData = new ingData();
+
+            try
+            {
+                foreach (ingData myIngData in myIngDataList)
+                {
+                    cboIngList00.Items.Add(myIngData.Name);
+                    cboIngList01.Items.Add(myIngData.Name);
+                    cboIngList02.Items.Add(myIngData.Name);
+                    cboIngListE0.Items.Add(myIngData.Name);
+                }
+            }
+            finally {//TODO: catch
+
+            }
+        }
+
+        //Method to Refresh combo list
+        private void initializingIngList()
         {
             //Clear combo list
             cboIngList00.Items.Clear();
@@ -301,7 +347,7 @@ namespace SpicyAppSpace
                 //Read in a line from the file and priming read
                 line = myReader.ReadLine();
 
-                string[] fields = new string[4];
+                string[] fields = new string[5];
                 char[] sep = new char[1];
 
                 sep[0] = ',';
@@ -317,6 +363,7 @@ namespace SpicyAppSpace
                     tempIngData.Quantity = Convert.ToInt32(fields[1]);
                     tempIngData.Unit = fields[2];
                     tempIngData.Spicyness = float.Parse(fields[3]);
+                    tempIngData.File = fields[4];
 
                     //Add tempIngData to myIngDataList
                     myIngDataList.Add(tempIngData);
@@ -338,9 +385,10 @@ namespace SpicyAppSpace
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("File not found!\n");
+                MessageBox.Show("File not found!\n", "Error");
             }
         }
+
         //Runs after selecting an item
         private void cboIngList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -349,22 +397,32 @@ namespace SpicyAppSpace
             Label refLBLIngQuantity = null;
             Label refLBLIngUnit = null;
             Label refLBLIngSpicy = null;
-            Button refButton = null;
-            getObjectRef(sender, ref refCBOIngName, ref refLBLIngQuantity, ref refLBLIngUnit, ref refLBLIngSpicy, ref refButton);
+            Label refLBLIngFile = null;
+            PictureBox refPICFile = null;
+            getObjectRef(sender, ref refCBOIngName, ref refLBLIngQuantity, ref refLBLIngUnit, ref refLBLIngSpicy, ref refLBLIngFile, ref refPICFile);
 
             //Grabs index of item
             int index = refCBOIngName.SelectedIndex;
 
             //Grabs item data to display
-            if (index != -1)
+            try
             {
-                //Temp ingData, gets item from index location
-                ingData tempIngData = getListItem(index);
+                if (index != -1)
+                {
+                    //Temp ingData, gets item from index location
+                    ingData tempIngData = getListItem(index);
 
-                //Display
-                refLBLIngQuantity.Text = (tempIngData.Quantity).ToString();
-                refLBLIngUnit.Text = tempIngData.Unit;
-                refLBLIngSpicy.Text = (tempIngData.Spicyness).ToString();
+                    //Display
+                    refLBLIngQuantity.Text = (tempIngData.Quantity).ToString();
+                    refLBLIngUnit.Text = tempIngData.Unit;
+                    refLBLIngSpicy.Text = (tempIngData.Spicyness).ToString();
+                    refLBLIngFile.Text = tempIngData.File;
+                    refPICFile.Image = new Bitmap("assets/"+ tempIngData.File);
+                }
+            }
+            catch (ArgumentException)//Catch any file path errors
+            {
+
             }
         }
 
@@ -402,7 +460,7 @@ namespace SpicyAppSpace
         }
 
         //btnIngAdd_Click version
-        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy, ref Button refButton)
+        private void getObjectRef(object sender, ref TextBox refTXTIngName, ref NumericUpDown refUPDIngQuantity, ref ComboBox refCBOIngUnit, ref NumericUpDown refUPDIngSpicy, ref Button refButton, ref ComboBox refCBOFile)
         {
             if (Object.ReferenceEquals(sender, btnConfirmE0))
             {
@@ -411,6 +469,7 @@ namespace SpicyAppSpace
                 refCBOIngUnit = cboIngQuantityUnitsE0;
                 refUPDIngSpicy = updIngSpicyE0;
                 refButton = btnConfirmE0;
+                refCBOFile = cboIngFileE0;
             }
             else if (Object.ReferenceEquals(sender, btnIngAdd01))
             {
@@ -419,6 +478,7 @@ namespace SpicyAppSpace
                 refCBOIngUnit = cboIngQuantityUnits01;
                 refUPDIngSpicy = updIngSpicy01;
                 refButton = btnIngAdd01;
+                refCBOFile = cboIngFile01;
             }
             else if (Object.ReferenceEquals(sender, btnIngAdd02))
             {
@@ -427,6 +487,7 @@ namespace SpicyAppSpace
                 refCBOIngUnit = cboIngQuantityUnits02;
                 refUPDIngSpicy = updIngSpicy02;
                 refButton = btnIngAdd02;
+                refCBOFile = cboIngFile02;
             }
             else if (Object.ReferenceEquals(sender, btnIngAdd03))
             {
@@ -435,44 +496,49 @@ namespace SpicyAppSpace
                 refCBOIngUnit = cboIngQuantityUnits03;
                 refUPDIngSpicy = updIngSpicy03;
                 refButton = btnIngAdd03;
+                refCBOFile = cboIngFile03;
             }
             return;
         }
 
         //cboIngList_SelectedIndexChanged version
-        private void getObjectRef(object sender, ref ComboBox refCBOIngName, ref Label refLBLIngQuantity, ref Label refLBLIngUnit, ref Label refLBLIngSpicy, ref Button refButton)
+        private void getObjectRef(object sender, ref ComboBox refCBOIngName, ref Label refLBLIngQuantity, ref Label refLBLIngUnit, ref Label refLBLIngSpicy, ref Label refLBLIngFile, ref PictureBox refPICFile)
         {
             if (Object.ReferenceEquals(sender, cboIngList00))
             {
                 refCBOIngName = cboIngList00;
                 refLBLIngQuantity = lblIngQuantity00;
                 refLBLIngUnit = lblIngQuantityUnits00;
-                refLBLIngSpicy = lblSpicy00;
-                refButton = btnView00;
+                refLBLIngSpicy = lblIngSpicy00;
+                refLBLIngFile = lblIngFile00;
+                refPICFile = picIng00;
             }
             else if (Object.ReferenceEquals(sender, cboIngList01))
             {
                 refCBOIngName = cboIngList01;
                 refLBLIngQuantity = lblIngQuantity01;
                 refLBLIngUnit = lblIngQuantityUnits01;
-                refLBLIngSpicy = lblSpicy01;
-                refButton = btnView01;
+                refLBLIngSpicy = lblIngSpicy01;
+                refLBLIngFile = lblIngFile01;
+                refPICFile = picIng01;
             }
             else if (Object.ReferenceEquals(sender, cboIngList02))
             {
                 refCBOIngName = cboIngList02;
                 refLBLIngQuantity = lblIngQuantity02;
                 refLBLIngUnit = lblIngQuantityUnits02;
-                refLBLIngSpicy = lblSpicy02;
-                refButton = btnView02;
+                refLBLIngSpicy = lblIngSpicy02;
+                refLBLIngFile = lblIngFile02;
+                refPICFile = picIng02;
             }
             else if (Object.ReferenceEquals(sender, cboIngListE0))
             {
                 refCBOIngName = cboIngListE0;
                 refLBLIngQuantity = lblIngQuantityE0;
                 refLBLIngUnit = lblIngQuantityUnitsE0;
-                refLBLIngSpicy = lblSpicyE0;
-                refButton = btnEditE0;
+                refLBLIngSpicy = lblIngSpicyE0;
+                refLBLIngFile = lblIngFileE0;
+                refPICFile = picIngE0;
             }
             return;
         }
@@ -499,7 +565,7 @@ namespace SpicyAppSpace
         {
             if (cboIngListE0.Text == String.Empty)
             {
-                MessageBox.Show("Please select an item to edit.\n");
+                MessageBox.Show("Please select an item to edit.\n", validationTitle);
                 return;
             }
 
@@ -511,6 +577,7 @@ namespace SpicyAppSpace
                 cboIngQuantityUnitsE0.Enabled = true;
                 updIngSpicyE0.Enabled = true;
                 btnConfirmE0.Enabled = true;
+                cboIngFileE0.Enabled = true;
                 //Disable combo box
                 cboIngListE0.Enabled = false;
                 //Change button name
@@ -540,6 +607,7 @@ namespace SpicyAppSpace
                 cboIngQuantityUnitsE0.Enabled = false;
                 updIngSpicyE0.Enabled = false;
                 btnConfirmE0.Enabled = false;
+                cboIngFileE0.Enabled = false;
                 //Enable combo box
                 cboIngListE0.Enabled = true;
                 //Change button name
@@ -576,10 +644,9 @@ namespace SpicyAppSpace
             //Units check
             if (txtIngNameE0.Text == String.Empty)
             {
-                MessageBox.Show("Must have a Unit.");
+                MessageBox.Show("Must have a Unit.", validationTitle);
                 return;
             }
-
 
             //Get index
             int index = cboIngListE0.SelectedIndex;
@@ -596,20 +663,70 @@ namespace SpicyAppSpace
                 tempIngData.Quantity = Convert.ToInt32(updIngQuantityE0.Text);
                 tempIngData.Unit = cboIngQuantityUnitsE0.Text;
                 tempIngData.Spicyness = float.Parse(updIngSpicyE0.Text);
+                tempIngData.File = cboIngFileE0.Text;
 
                 //Display
                 txtIngNameE0.Text = txtIngNameE0.Text;
                 lblIngQuantityE0.Text = updIngQuantityE0.Text;
                 lblIngQuantityUnitsE0.Text = cboIngQuantityUnitsE0.Text;
-                lblSpicyE0.Text = updIngSpicyE0.Text;
+                lblIngSpicyE0.Text = updIngSpicyE0.Text;
+                lblIngFileE0.Text = cboIngFileE0.Text;
+                picIngE0.Image = new Bitmap("assets/" + cboIngFileE0.Text);
 
                 //Change Button Name
                 btnEditE0.Text = "Done";
             }
+        }
 
-            //Write to file in line
+        //Method to write to file
+        private void writeDatabaseIngData(string fileDatabase)
+        {
+            //Text-file for writing ingredient data
+            /**TODO: Replace file with Database at some point*/
+            FileStream outFile = new FileStream(fileDatabase, FileMode.OpenOrCreate);
+            StreamWriter binWriter = new StreamWriter(outFile);
 
+            foreach (ingData myIngData in myIngDataList)
+            {
+                binWriter.WriteLine(myIngData.Name + "," + myIngData.Quantity + "," + myIngData.Unit + "," + myIngData.Spicyness + "," + myIngData.File);
+            }
 
+            //Close
+            binWriter.Close();
+            outFile.Close();
+
+            //Refresh list after adding items.
+            //Note: Make sure to put this method after close
+            RefreshIngList();
+        }
+
+        private void btnWrite_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you absolutely sure you want to update your changes to the database?\nIf you click Yes, you cannot undo this action.", "Write to Database", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                writeDatabaseIngData("SpicyAppIngredients.txt");
+                MessageBox.Show("Database has been written.", "Confirmation");
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                
+            }
+        }
+
+        private void getDirectoryFiles()
+        {
+            DirectoryInfo assets = new DirectoryInfo("assets/");
+            FileInfo[] Files = assets.GetFiles("*");
+
+            cboIngFileE0.DataSource = Files;
+            cboIngFileE0.DisplayMember = "Name";
+            cboIngFile01.DataSource = Files;
+            cboIngFile01.DisplayMember = "Name";
+            cboIngFile02.DataSource = Files;
+            cboIngFile02.DisplayMember = "Name";
+            cboIngFile03.DataSource = Files;
+            cboIngFile03.DisplayMember = "Name";
         }
     }
 }

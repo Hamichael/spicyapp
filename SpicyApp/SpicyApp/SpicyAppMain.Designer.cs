@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpicyApp));
             this.pnlIntro = new System.Windows.Forms.Panel();
             this.btnIntPanelClose = new System.Windows.Forms.Button();
             this.btnIntPanelShow = new System.Windows.Forms.Button();
@@ -36,22 +37,20 @@
             this.btnRecPanel = new System.Windows.Forms.Button();
             this.btnCrdPanel = new System.Windows.Forms.Button();
             this.pnlIng = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.btnView02 = new System.Windows.Forms.Button();
-            this.btnView01 = new System.Windows.Forms.Button();
+            this.btnWrite = new System.Windows.Forms.Button();
+            this.picLabelSpicy = new System.Windows.Forms.PictureBox();
             this.updIngSpicy03 = new System.Windows.Forms.NumericUpDown();
             this.updIngSpicy02 = new System.Windows.Forms.NumericUpDown();
             this.updIngSpicy01 = new System.Windows.Forms.NumericUpDown();
             this.updIngSpicyE0 = new System.Windows.Forms.NumericUpDown();
-            this.lblSpicyE0 = new System.Windows.Forms.Label();
-            this.lblSpicy02 = new System.Windows.Forms.Label();
-            this.lblSpicy01 = new System.Windows.Forms.Label();
-            this.lblSpicy00 = new System.Windows.Forms.Label();
-            this.btnView00 = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblIngSpicyE0 = new System.Windows.Forms.Label();
+            this.lblIngSpicy02 = new System.Windows.Forms.Label();
+            this.lblIngSpicy01 = new System.Windows.Forms.Label();
+            this.lblIngSpicy00 = new System.Windows.Forms.Label();
+            this.picIngE0 = new System.Windows.Forms.PictureBox();
+            this.picIng02 = new System.Windows.Forms.PictureBox();
+            this.picIng01 = new System.Windows.Forms.PictureBox();
+            this.picIng00 = new System.Windows.Forms.PictureBox();
             this.btnIngAdd03 = new System.Windows.Forms.Button();
             this.cboIngQuantityUnits03 = new System.Windows.Forms.ComboBox();
             this.updIngQuantity03 = new System.Windows.Forms.NumericUpDown();
@@ -99,18 +98,27 @@
             this.pnlCrd = new System.Windows.Forms.Panel();
             this.lblCrdTitle = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.cboIngFile01 = new System.Windows.Forms.ComboBox();
+            this.cboIngFileE0 = new System.Windows.Forms.ComboBox();
+            this.cboIngFile02 = new System.Windows.Forms.ComboBox();
+            this.cboIngFile03 = new System.Windows.Forms.ComboBox();
+            this.lblFile = new System.Windows.Forms.Label();
+            this.lblIngFile00 = new System.Windows.Forms.Label();
+            this.lblIngFile01 = new System.Windows.Forms.Label();
+            this.lblIngFile02 = new System.Windows.Forms.Label();
+            this.lblIngFileE0 = new System.Windows.Forms.Label();
             this.tipSpicyApp = new System.Windows.Forms.ToolTip(this.components);
             this.pnlIntro.SuspendLayout();
             this.pnlIng.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLabelSpicy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy03)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicyE0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIngE0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantity03)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantity01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantityE0)).BeginInit();
@@ -125,7 +133,7 @@
             this.pnlIntro.Controls.Add(this.btnIntPanelClose);
             this.pnlIntro.Location = new System.Drawing.Point(12, 12);
             this.pnlIntro.Name = "pnlIntro";
-            this.pnlIntro.Size = new System.Drawing.Size(829, 415);
+            this.pnlIntro.Size = new System.Drawing.Size(955, 415);
             this.pnlIntro.TabIndex = 0;
             // 
             // btnIntPanelClose
@@ -181,22 +189,29 @@
             // pnlIng
             // 
             this.pnlIng.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlIng.Controls.Add(this.pictureBox5);
-            this.pnlIng.Controls.Add(this.btnView02);
-            this.pnlIng.Controls.Add(this.btnView01);
+            this.pnlIng.Controls.Add(this.lblIngFileE0);
+            this.pnlIng.Controls.Add(this.lblIngFile02);
+            this.pnlIng.Controls.Add(this.lblIngFile01);
+            this.pnlIng.Controls.Add(this.lblIngFile00);
+            this.pnlIng.Controls.Add(this.lblFile);
+            this.pnlIng.Controls.Add(this.cboIngFile03);
+            this.pnlIng.Controls.Add(this.cboIngFile02);
+            this.pnlIng.Controls.Add(this.cboIngFileE0);
+            this.pnlIng.Controls.Add(this.cboIngFile01);
+            this.pnlIng.Controls.Add(this.btnWrite);
+            this.pnlIng.Controls.Add(this.picLabelSpicy);
             this.pnlIng.Controls.Add(this.updIngSpicy03);
             this.pnlIng.Controls.Add(this.updIngSpicy02);
             this.pnlIng.Controls.Add(this.updIngSpicy01);
             this.pnlIng.Controls.Add(this.updIngSpicyE0);
-            this.pnlIng.Controls.Add(this.lblSpicyE0);
-            this.pnlIng.Controls.Add(this.lblSpicy02);
-            this.pnlIng.Controls.Add(this.lblSpicy01);
-            this.pnlIng.Controls.Add(this.lblSpicy00);
-            this.pnlIng.Controls.Add(this.btnView00);
-            this.pnlIng.Controls.Add(this.pictureBox4);
-            this.pnlIng.Controls.Add(this.pictureBox3);
-            this.pnlIng.Controls.Add(this.pictureBox2);
-            this.pnlIng.Controls.Add(this.pictureBox1);
+            this.pnlIng.Controls.Add(this.lblIngSpicyE0);
+            this.pnlIng.Controls.Add(this.lblIngSpicy02);
+            this.pnlIng.Controls.Add(this.lblIngSpicy01);
+            this.pnlIng.Controls.Add(this.lblIngSpicy00);
+            this.pnlIng.Controls.Add(this.picIngE0);
+            this.pnlIng.Controls.Add(this.picIng02);
+            this.pnlIng.Controls.Add(this.picIng01);
+            this.pnlIng.Controls.Add(this.picIng00);
             this.pnlIng.Controls.Add(this.btnIngAdd03);
             this.pnlIng.Controls.Add(this.cboIngQuantityUnits03);
             this.pnlIng.Controls.Add(this.updIngQuantity03);
@@ -241,36 +256,29 @@
             this.pnlIng.Controls.Add(this.lblIngTitle);
             this.pnlIng.Location = new System.Drawing.Point(147, 51);
             this.pnlIng.Name = "pnlIng";
-            this.pnlIng.Size = new System.Drawing.Size(690, 364);
+            this.pnlIng.Size = new System.Drawing.Size(792, 364);
             this.pnlIng.TabIndex = 1;
             // 
-            // pictureBox5
+            // btnWrite
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(442, 43);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(46, 23);
-            this.pictureBox5.TabIndex = 64;
-            this.pictureBox5.TabStop = false;
+            this.btnWrite.Location = new System.Drawing.Point(618, 16);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(53, 23);
+            this.btnWrite.TabIndex = 65;
+            this.btnWrite.Text = "Write";
+            this.tipSpicyApp.SetToolTip(this.btnWrite, "Uploads changes made to ingredients into the database");
+            this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
             // 
-            // btnView02
+            // picLabelSpicy
             // 
-            this.btnView02.Enabled = false;
-            this.btnView02.Location = new System.Drawing.Point(494, 132);
-            this.btnView02.Name = "btnView02";
-            this.btnView02.Size = new System.Drawing.Size(53, 23);
-            this.btnView02.TabIndex = 63;
-            this.btnView02.Text = "View";
-            this.btnView02.UseVisualStyleBackColor = true;
-            // 
-            // btnView01
-            // 
-            this.btnView01.Enabled = false;
-            this.btnView01.Location = new System.Drawing.Point(494, 105);
-            this.btnView01.Name = "btnView01";
-            this.btnView01.Size = new System.Drawing.Size(53, 23);
-            this.btnView01.TabIndex = 62;
-            this.btnView01.Text = "View";
-            this.btnView01.UseVisualStyleBackColor = true;
+            this.picLabelSpicy.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLabelSpicy.BackgroundImage")));
+            this.picLabelSpicy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picLabelSpicy.Location = new System.Drawing.Point(442, 43);
+            this.picLabelSpicy.Name = "picLabelSpicy";
+            this.picLabelSpicy.Size = new System.Drawing.Size(46, 23);
+            this.picLabelSpicy.TabIndex = 64;
+            this.picLabelSpicy.TabStop = false;
             // 
             // updIngSpicy03
             // 
@@ -289,7 +297,6 @@
             this.updIngSpicy03.Name = "updIngSpicy03";
             this.updIngSpicy03.Size = new System.Drawing.Size(46, 20);
             this.updIngSpicy03.TabIndex = 61;
-            this.tipSpicyApp.SetToolTip(this.updIngSpicy03, "Quantity");
             // 
             // updIngSpicy02
             // 
@@ -308,7 +315,6 @@
             this.updIngSpicy02.Name = "updIngSpicy02";
             this.updIngSpicy02.Size = new System.Drawing.Size(46, 20);
             this.updIngSpicy02.TabIndex = 60;
-            this.tipSpicyApp.SetToolTip(this.updIngSpicy02, "Quantity");
             // 
             // updIngSpicy01
             // 
@@ -327,7 +333,6 @@
             this.updIngSpicy01.Name = "updIngSpicy01";
             this.updIngSpicy01.Size = new System.Drawing.Size(46, 20);
             this.updIngSpicy01.TabIndex = 59;
-            this.tipSpicyApp.SetToolTip(this.updIngSpicy01, "Quantity");
             // 
             // updIngSpicyE0
             // 
@@ -347,90 +352,87 @@
             this.updIngSpicyE0.Name = "updIngSpicyE0";
             this.updIngSpicyE0.Size = new System.Drawing.Size(46, 20);
             this.updIngSpicyE0.TabIndex = 58;
-            this.tipSpicyApp.SetToolTip(this.updIngSpicyE0, "Quantity");
             // 
-            // lblSpicyE0
+            // lblIngSpicyE0
             // 
-            this.lblSpicyE0.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSpicyE0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpicyE0.Location = new System.Drawing.Point(442, 191);
-            this.lblSpicyE0.Name = "lblSpicyE0";
-            this.lblSpicyE0.Size = new System.Drawing.Size(46, 21);
-            this.lblSpicyE0.TabIndex = 57;
+            this.lblIngSpicyE0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngSpicyE0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngSpicyE0.Location = new System.Drawing.Point(442, 191);
+            this.lblIngSpicyE0.Name = "lblIngSpicyE0";
+            this.lblIngSpicyE0.Size = new System.Drawing.Size(46, 21);
+            this.lblIngSpicyE0.TabIndex = 57;
             // 
-            // lblSpicy02
+            // lblIngSpicy02
             // 
-            this.lblSpicy02.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSpicy02.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpicy02.Location = new System.Drawing.Point(442, 133);
-            this.lblSpicy02.Name = "lblSpicy02";
-            this.lblSpicy02.Size = new System.Drawing.Size(46, 21);
-            this.lblSpicy02.TabIndex = 56;
+            this.lblIngSpicy02.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngSpicy02.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngSpicy02.Location = new System.Drawing.Point(442, 133);
+            this.lblIngSpicy02.Name = "lblIngSpicy02";
+            this.lblIngSpicy02.Size = new System.Drawing.Size(46, 21);
+            this.lblIngSpicy02.TabIndex = 56;
             // 
-            // lblSpicy01
+            // lblIngSpicy01
             // 
-            this.lblSpicy01.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSpicy01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpicy01.Location = new System.Drawing.Point(442, 106);
-            this.lblSpicy01.Name = "lblSpicy01";
-            this.lblSpicy01.Size = new System.Drawing.Size(46, 21);
-            this.lblSpicy01.TabIndex = 55;
+            this.lblIngSpicy01.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngSpicy01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngSpicy01.Location = new System.Drawing.Point(442, 106);
+            this.lblIngSpicy01.Name = "lblIngSpicy01";
+            this.lblIngSpicy01.Size = new System.Drawing.Size(46, 21);
+            this.lblIngSpicy01.TabIndex = 55;
             // 
-            // lblSpicy00
+            // lblIngSpicy00
             // 
-            this.lblSpicy00.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSpicy00.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSpicy00.Location = new System.Drawing.Point(442, 79);
-            this.lblSpicy00.Name = "lblSpicy00";
-            this.lblSpicy00.Size = new System.Drawing.Size(46, 21);
-            this.lblSpicy00.TabIndex = 54;
+            this.lblIngSpicy00.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngSpicy00.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngSpicy00.Location = new System.Drawing.Point(442, 79);
+            this.lblIngSpicy00.Name = "lblIngSpicy00";
+            this.lblIngSpicy00.Size = new System.Drawing.Size(46, 21);
+            this.lblIngSpicy00.TabIndex = 54;
             // 
-            // btnView00
+            // picIngE0
             // 
-            this.btnView00.Enabled = false;
-            this.btnView00.Location = new System.Drawing.Point(494, 77);
-            this.btnView00.Name = "btnView00";
-            this.btnView00.Size = new System.Drawing.Size(53, 23);
-            this.btnView00.TabIndex = 53;
-            this.btnView00.Text = "View";
-            this.btnView00.UseVisualStyleBackColor = true;
+            this.picIngE0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIngE0.Location = new System.Drawing.Point(685, 266);
+            this.picIngE0.Name = "picIngE0";
+            this.picIngE0.Size = new System.Drawing.Size(86, 76);
+            this.picIngE0.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIngE0.TabIndex = 52;
+            this.picIngE0.TabStop = false;
             // 
-            // pictureBox4
+            // picIng02
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(577, 266);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(86, 76);
-            this.pictureBox4.TabIndex = 52;
-            this.pictureBox4.TabStop = false;
+            this.picIng02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIng02.Location = new System.Drawing.Point(685, 184);
+            this.picIng02.Name = "picIng02";
+            this.picIng02.Size = new System.Drawing.Size(86, 76);
+            this.picIng02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIng02.TabIndex = 51;
+            this.picIng02.TabStop = false;
             // 
-            // pictureBox3
+            // picIng01
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(577, 184);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(86, 76);
-            this.pictureBox3.TabIndex = 51;
-            this.pictureBox3.TabStop = false;
+            this.picIng01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIng01.Location = new System.Drawing.Point(685, 102);
+            this.picIng01.Name = "picIng01";
+            this.picIng01.Size = new System.Drawing.Size(86, 76);
+            this.picIng01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIng01.TabIndex = 50;
+            this.picIng01.TabStop = false;
             // 
-            // pictureBox2
+            // picIng00
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(577, 102);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(86, 76);
-            this.pictureBox2.TabIndex = 50;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(577, 20);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(86, 76);
-            this.pictureBox1.TabIndex = 49;
-            this.pictureBox1.TabStop = false;
+            this.picIng00.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picIng00.Location = new System.Drawing.Point(685, 20);
+            this.picIng00.Name = "picIng00";
+            this.picIng00.Size = new System.Drawing.Size(86, 76);
+            this.picIng00.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picIng00.TabIndex = 49;
+            this.picIng00.TabStop = false;
             // 
             // btnIngAdd03
             // 
             this.btnIngAdd03.Enabled = false;
-            this.btnIngAdd03.Location = new System.Drawing.Point(494, 326);
+            this.btnIngAdd03.Location = new System.Drawing.Point(618, 326);
             this.btnIngAdd03.Name = "btnIngAdd03";
             this.btnIngAdd03.Size = new System.Drawing.Size(53, 23);
             this.btnIngAdd03.TabIndex = 48;
@@ -440,6 +442,7 @@
             // 
             // cboIngQuantityUnits03
             // 
+            this.cboIngQuantityUnits03.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngQuantityUnits03.FormattingEnabled = true;
             this.cboIngQuantityUnits03.Items.AddRange(new object[] {
             "cups",
@@ -456,7 +459,6 @@
             this.updIngQuantity03.Name = "updIngQuantity03";
             this.updIngQuantity03.Size = new System.Drawing.Size(53, 20);
             this.updIngQuantity03.TabIndex = 46;
-            this.tipSpicyApp.SetToolTip(this.updIngQuantity03, "Quantity");
             // 
             // txtIngName03
             // 
@@ -465,14 +467,14 @@
             this.txtIngName03.Name = "txtIngName03";
             this.txtIngName03.Size = new System.Drawing.Size(168, 20);
             this.txtIngName03.TabIndex = 45;
-            this.tipSpicyApp.SetToolTip(this.txtIngName03, "Ingredient Name");
             this.txtIngName03.Validating += new System.ComponentModel.CancelEventHandler(this.txtIngName_Validating);
             // 
             // lblAddIngPrompt03
             // 
-            this.lblAddIngPrompt03.Location = new System.Drawing.Point(10, 326);
+            this.lblAddIngPrompt03.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddIngPrompt03.Location = new System.Drawing.Point(-1, 326);
             this.lblAddIngPrompt03.Name = "lblAddIngPrompt03";
-            this.lblAddIngPrompt03.Size = new System.Drawing.Size(114, 23);
+            this.lblAddIngPrompt03.Size = new System.Drawing.Size(125, 23);
             this.lblAddIngPrompt03.TabIndex = 44;
             this.lblAddIngPrompt03.Text = "Add new Ingredient:";
             this.lblAddIngPrompt03.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -480,7 +482,7 @@
             // btnIngAdd01
             // 
             this.btnIngAdd01.Enabled = false;
-            this.btnIngAdd01.Location = new System.Drawing.Point(494, 274);
+            this.btnIngAdd01.Location = new System.Drawing.Point(618, 274);
             this.btnIngAdd01.Name = "btnIngAdd01";
             this.btnIngAdd01.Size = new System.Drawing.Size(53, 23);
             this.btnIngAdd01.TabIndex = 43;
@@ -490,6 +492,7 @@
             // 
             // cboIngQuantityUnits01
             // 
+            this.cboIngQuantityUnits01.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngQuantityUnits01.FormattingEnabled = true;
             this.cboIngQuantityUnits01.Items.AddRange(new object[] {
             "cups",
@@ -506,7 +509,6 @@
             this.updIngQuantity01.Name = "updIngQuantity01";
             this.updIngQuantity01.Size = new System.Drawing.Size(53, 20);
             this.updIngQuantity01.TabIndex = 41;
-            this.tipSpicyApp.SetToolTip(this.updIngQuantity01, "Quantity");
             // 
             // txtIngName01
             // 
@@ -515,20 +517,21 @@
             this.txtIngName01.Name = "txtIngName01";
             this.txtIngName01.Size = new System.Drawing.Size(168, 20);
             this.txtIngName01.TabIndex = 40;
-            this.tipSpicyApp.SetToolTip(this.txtIngName01, "Ingredient Name");
             this.txtIngName01.Validating += new System.ComponentModel.CancelEventHandler(this.txtIngName_Validating);
             // 
             // lblAddIngPrompt01
             // 
-            this.lblAddIngPrompt01.Location = new System.Drawing.Point(10, 273);
+            this.lblAddIngPrompt01.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddIngPrompt01.Location = new System.Drawing.Point(3, 273);
             this.lblAddIngPrompt01.Name = "lblAddIngPrompt01";
-            this.lblAddIngPrompt01.Size = new System.Drawing.Size(114, 23);
+            this.lblAddIngPrompt01.Size = new System.Drawing.Size(121, 23);
             this.lblAddIngPrompt01.TabIndex = 39;
             this.lblAddIngPrompt01.Text = "Add new Ingredient:";
             this.lblAddIngPrompt01.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblUnit
             // 
+            this.lblUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnit.Location = new System.Drawing.Point(363, 43);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(73, 23);
@@ -538,6 +541,7 @@
             // 
             // lblQuantityCol
             // 
+            this.lblQuantityCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQuantityCol.Location = new System.Drawing.Point(304, 43);
             this.lblQuantityCol.Name = "lblQuantityCol";
             this.lblQuantityCol.Size = new System.Drawing.Size(53, 23);
@@ -547,6 +551,7 @@
             // 
             // lblIngCol
             // 
+            this.lblIngCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIngCol.Location = new System.Drawing.Point(130, 43);
             this.lblIngCol.Name = "lblIngCol";
             this.lblIngCol.Size = new System.Drawing.Size(168, 23);
@@ -574,6 +579,7 @@
             // 
             // cboIngList02
             // 
+            this.cboIngList02.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngList02.FormattingEnabled = true;
             this.cboIngList02.Location = new System.Drawing.Point(130, 133);
             this.cboIngList02.Name = "cboIngList02";
@@ -583,6 +589,7 @@
             // 
             // lblViewIng02
             // 
+            this.lblViewIng02.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblViewIng02.Location = new System.Drawing.Point(10, 131);
             this.lblViewIng02.Name = "lblViewIng02";
             this.lblViewIng02.Size = new System.Drawing.Size(114, 23);
@@ -610,6 +617,7 @@
             // 
             // cboIngList01
             // 
+            this.cboIngList01.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngList01.FormattingEnabled = true;
             this.cboIngList01.Location = new System.Drawing.Point(130, 106);
             this.cboIngList01.Name = "cboIngList01";
@@ -619,6 +627,7 @@
             // 
             // lblViewIng01
             // 
+            this.lblViewIng01.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblViewIng01.Location = new System.Drawing.Point(10, 105);
             this.lblViewIng01.Name = "lblViewIng01";
             this.lblViewIng01.Size = new System.Drawing.Size(114, 23);
@@ -628,6 +637,7 @@
             // 
             // lblEditIngPromptE0
             // 
+            this.lblEditIngPromptE0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEditIngPromptE0.Location = new System.Drawing.Point(10, 218);
             this.lblEditIngPromptE0.Name = "lblEditIngPromptE0";
             this.lblEditIngPromptE0.Size = new System.Drawing.Size(114, 23);
@@ -638,7 +648,7 @@
             // btnConfirmE0
             // 
             this.btnConfirmE0.Enabled = false;
-            this.btnConfirmE0.Location = new System.Drawing.Point(494, 218);
+            this.btnConfirmE0.Location = new System.Drawing.Point(618, 219);
             this.btnConfirmE0.Name = "btnConfirmE0";
             this.btnConfirmE0.Size = new System.Drawing.Size(53, 20);
             this.btnConfirmE0.TabIndex = 20;
@@ -648,6 +658,7 @@
             // 
             // cboIngQuantityUnitsE0
             // 
+            this.cboIngQuantityUnitsE0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngQuantityUnitsE0.Enabled = false;
             this.cboIngQuantityUnitsE0.FormattingEnabled = true;
             this.cboIngQuantityUnitsE0.Items.AddRange(new object[] {
@@ -666,7 +677,6 @@
             this.updIngQuantityE0.Name = "updIngQuantityE0";
             this.updIngQuantityE0.Size = new System.Drawing.Size(53, 20);
             this.updIngQuantityE0.TabIndex = 18;
-            this.tipSpicyApp.SetToolTip(this.updIngQuantityE0, "Quantity");
             // 
             // txtIngNameE0
             // 
@@ -676,12 +686,11 @@
             this.txtIngNameE0.Name = "txtIngNameE0";
             this.txtIngNameE0.Size = new System.Drawing.Size(168, 20);
             this.txtIngNameE0.TabIndex = 17;
-            this.tipSpicyApp.SetToolTip(this.txtIngNameE0, "Ingredient Name");
             this.txtIngNameE0.Validating += new System.ComponentModel.CancelEventHandler(this.txtIngName_Validating);
             // 
             // btnEditE0
             // 
-            this.btnEditE0.Location = new System.Drawing.Point(494, 191);
+            this.btnEditE0.Location = new System.Drawing.Point(618, 191);
             this.btnEditE0.Name = "btnEditE0";
             this.btnEditE0.Size = new System.Drawing.Size(53, 21);
             this.btnEditE0.TabIndex = 16;
@@ -709,6 +718,7 @@
             // 
             // cboIngListE0
             // 
+            this.cboIngListE0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngListE0.FormattingEnabled = true;
             this.cboIngListE0.Location = new System.Drawing.Point(130, 191);
             this.cboIngListE0.Name = "cboIngListE0";
@@ -718,6 +728,7 @@
             // 
             // lblViewIngE0
             // 
+            this.lblViewIngE0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblViewIngE0.Location = new System.Drawing.Point(10, 191);
             this.lblViewIngE0.Name = "lblViewIngE0";
             this.lblViewIngE0.Size = new System.Drawing.Size(114, 23);
@@ -727,6 +738,7 @@
             // 
             // lblViewIng00
             // 
+            this.lblViewIng00.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblViewIng00.Location = new System.Drawing.Point(10, 77);
             this.lblViewIng00.Name = "lblViewIng00";
             this.lblViewIng00.Size = new System.Drawing.Size(114, 23);
@@ -736,11 +748,12 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(494, 43);
+            this.btnRefresh.Location = new System.Drawing.Point(618, 43);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(53, 23);
             this.btnRefresh.TabIndex = 10;
             this.btnRefresh.Text = "Refresh All";
+            this.tipSpicyApp.SetToolTip(this.btnRefresh, "Refreshes all combo boxes");
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -755,6 +768,7 @@
             // 
             // cboIngList00
             // 
+            this.cboIngList00.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngList00.FormattingEnabled = true;
             this.cboIngList00.Location = new System.Drawing.Point(130, 79);
             this.cboIngList00.Name = "cboIngList00";
@@ -774,7 +788,7 @@
             // btnIngAdd02
             // 
             this.btnIngAdd02.Enabled = false;
-            this.btnIngAdd02.Location = new System.Drawing.Point(494, 300);
+            this.btnIngAdd02.Location = new System.Drawing.Point(618, 300);
             this.btnIngAdd02.Name = "btnIngAdd02";
             this.btnIngAdd02.Size = new System.Drawing.Size(53, 23);
             this.btnIngAdd02.TabIndex = 5;
@@ -784,6 +798,7 @@
             // 
             // cboIngQuantityUnits02
             // 
+            this.cboIngQuantityUnits02.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngQuantityUnits02.FormattingEnabled = true;
             this.cboIngQuantityUnits02.Items.AddRange(new object[] {
             "cups",
@@ -800,13 +815,13 @@
             this.updIngQuantity02.Name = "updIngQuantity02";
             this.updIngQuantity02.Size = new System.Drawing.Size(53, 20);
             this.updIngQuantity02.TabIndex = 3;
-            this.tipSpicyApp.SetToolTip(this.updIngQuantity02, "Quantity");
             // 
             // lblAddIngPrompt02
             // 
-            this.lblAddIngPrompt02.Location = new System.Drawing.Point(10, 300);
+            this.lblAddIngPrompt02.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddIngPrompt02.Location = new System.Drawing.Point(3, 300);
             this.lblAddIngPrompt02.Name = "lblAddIngPrompt02";
-            this.lblAddIngPrompt02.Size = new System.Drawing.Size(114, 23);
+            this.lblAddIngPrompt02.Size = new System.Drawing.Size(121, 23);
             this.lblAddIngPrompt02.TabIndex = 2;
             this.lblAddIngPrompt02.Text = "Add new Ingredient:";
             this.lblAddIngPrompt02.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -818,14 +833,14 @@
             this.txtIngName02.Name = "txtIngName02";
             this.txtIngName02.Size = new System.Drawing.Size(168, 20);
             this.txtIngName02.TabIndex = 1;
-            this.tipSpicyApp.SetToolTip(this.txtIngName02, "Ingredient Name");
             this.txtIngName02.Validating += new System.ComponentModel.CancelEventHandler(this.txtIngName_Validating);
             // 
             // lblIngTitle
             // 
-            this.lblIngTitle.Location = new System.Drawing.Point(211, 7);
+            this.lblIngTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIngTitle.Location = new System.Drawing.Point(13, 7);
             this.lblIngTitle.Name = "lblIngTitle";
-            this.lblIngTitle.Size = new System.Drawing.Size(100, 23);
+            this.lblIngTitle.Size = new System.Drawing.Size(599, 23);
             this.lblIngTitle.TabIndex = 0;
             this.lblIngTitle.Text = "Ingredients";
             this.lblIngTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -876,12 +891,95 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // cboIngFile01
+            // 
+            this.cboIngFile01.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIngFile01.FormattingEnabled = true;
+            this.cboIngFile01.Location = new System.Drawing.Point(495, 275);
+            this.cboIngFile01.Name = "cboIngFile01";
+            this.cboIngFile01.Size = new System.Drawing.Size(117, 21);
+            this.cboIngFile01.TabIndex = 66;
+            // 
+            // cboIngFileE0
+            // 
+            this.cboIngFileE0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIngFileE0.Enabled = false;
+            this.cboIngFileE0.FormattingEnabled = true;
+            this.cboIngFileE0.Location = new System.Drawing.Point(495, 217);
+            this.cboIngFileE0.Name = "cboIngFileE0";
+            this.cboIngFileE0.Size = new System.Drawing.Size(117, 21);
+            this.cboIngFileE0.TabIndex = 67;
+            // 
+            // cboIngFile02
+            // 
+            this.cboIngFile02.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIngFile02.FormattingEnabled = true;
+            this.cboIngFile02.Location = new System.Drawing.Point(495, 301);
+            this.cboIngFile02.Name = "cboIngFile02";
+            this.cboIngFile02.Size = new System.Drawing.Size(117, 21);
+            this.cboIngFile02.TabIndex = 68;
+            // 
+            // cboIngFile03
+            // 
+            this.cboIngFile03.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIngFile03.FormattingEnabled = true;
+            this.cboIngFile03.Location = new System.Drawing.Point(495, 327);
+            this.cboIngFile03.Name = "cboIngFile03";
+            this.cboIngFile03.Size = new System.Drawing.Size(117, 21);
+            this.cboIngFile03.TabIndex = 69;
+            // 
+            // lblFile
+            // 
+            this.lblFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFile.Location = new System.Drawing.Point(492, 43);
+            this.lblFile.Name = "lblFile";
+            this.lblFile.Size = new System.Drawing.Size(120, 23);
+            this.lblFile.TabIndex = 70;
+            this.lblFile.Text = "File Name";
+            this.lblFile.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tipSpicyApp.SetToolTip(this.lblFile, "Upload images to [assets]");
+            // 
+            // lblIngFile00
+            // 
+            this.lblIngFile00.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngFile00.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngFile00.Location = new System.Drawing.Point(495, 79);
+            this.lblIngFile00.Name = "lblIngFile00";
+            this.lblIngFile00.Size = new System.Drawing.Size(117, 21);
+            this.lblIngFile00.TabIndex = 71;
+            // 
+            // lblIngFile01
+            // 
+            this.lblIngFile01.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngFile01.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngFile01.Location = new System.Drawing.Point(495, 106);
+            this.lblIngFile01.Name = "lblIngFile01";
+            this.lblIngFile01.Size = new System.Drawing.Size(117, 21);
+            this.lblIngFile01.TabIndex = 72;
+            // 
+            // lblIngFile02
+            // 
+            this.lblIngFile02.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngFile02.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngFile02.Location = new System.Drawing.Point(495, 133);
+            this.lblIngFile02.Name = "lblIngFile02";
+            this.lblIngFile02.Size = new System.Drawing.Size(117, 21);
+            this.lblIngFile02.TabIndex = 73;
+            // 
+            // lblIngFileE0
+            // 
+            this.lblIngFileE0.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblIngFileE0.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblIngFileE0.Location = new System.Drawing.Point(495, 191);
+            this.lblIngFileE0.Name = "lblIngFileE0";
+            this.lblIngFileE0.Size = new System.Drawing.Size(117, 21);
+            this.lblIngFileE0.TabIndex = 74;
+            // 
             // SpicyApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 439);
-            this.Controls.Add(this.pnlIntro);
+            this.ClientSize = new System.Drawing.Size(1002, 439);
             this.Controls.Add(this.pnlIng);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pnlCrd);
@@ -890,20 +988,21 @@
             this.Controls.Add(this.btnRecPanel);
             this.Controls.Add(this.btnIngPanel);
             this.Controls.Add(this.btnIntPanelShow);
+            this.Controls.Add(this.pnlIntro);
             this.Name = "SpicyApp";
             this.Text = "SpicyApp";
             this.pnlIntro.ResumeLayout(false);
             this.pnlIng.ResumeLayout(false);
             this.pnlIng.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLabelSpicy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy03)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicy01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngSpicyE0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIngE0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picIng00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantity03)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantity01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.updIngQuantityE0)).EndInit();
@@ -932,7 +1031,6 @@
         private System.Windows.Forms.NumericUpDown updIngQuantity02;
         private System.Windows.Forms.Label lblAddIngPrompt02;
         private System.Windows.Forms.TextBox txtIngName02;
-        private System.Windows.Forms.ToolTip tipSpicyApp;
         private System.Windows.Forms.ComboBox cboIngQuantityUnits02;
         private System.Windows.Forms.Button btnIngAdd02;
         private System.Windows.Forms.Label lblIngQuantityUnits00;
@@ -972,21 +1070,29 @@
         private System.Windows.Forms.Button btnIngAdd01;
         private System.Windows.Forms.ComboBox cboIngQuantityUnits01;
         private System.Windows.Forms.NumericUpDown updIngSpicyE0;
-        private System.Windows.Forms.Label lblSpicyE0;
-        private System.Windows.Forms.Label lblSpicy02;
-        private System.Windows.Forms.Label lblSpicy01;
-        private System.Windows.Forms.Label lblSpicy00;
-        private System.Windows.Forms.Button btnView00;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblIngSpicyE0;
+        private System.Windows.Forms.Label lblIngSpicy02;
+        private System.Windows.Forms.Label lblIngSpicy01;
+        private System.Windows.Forms.Label lblIngSpicy00;
+        private System.Windows.Forms.PictureBox picIngE0;
+        private System.Windows.Forms.PictureBox picIng02;
+        private System.Windows.Forms.PictureBox picIng01;
+        private System.Windows.Forms.PictureBox picIng00;
         private System.Windows.Forms.NumericUpDown updIngSpicy03;
         private System.Windows.Forms.NumericUpDown updIngSpicy02;
         private System.Windows.Forms.NumericUpDown updIngSpicy01;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Button btnView02;
-        private System.Windows.Forms.Button btnView01;
+        private System.Windows.Forms.PictureBox picLabelSpicy;
+        private System.Windows.Forms.Button btnWrite;
+        private System.Windows.Forms.ComboBox cboIngFile01;
+        private System.Windows.Forms.ComboBox cboIngFile03;
+        private System.Windows.Forms.ComboBox cboIngFile02;
+        private System.Windows.Forms.ComboBox cboIngFileE0;
+        private System.Windows.Forms.Label lblIngFileE0;
+        private System.Windows.Forms.Label lblIngFile02;
+        private System.Windows.Forms.Label lblIngFile01;
+        private System.Windows.Forms.Label lblIngFile00;
+        private System.Windows.Forms.Label lblFile;
+        private System.Windows.Forms.ToolTip tipSpicyApp;
     }
 }
 
